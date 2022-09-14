@@ -1,0 +1,152 @@
+.visible-lg {
+  @media (max-width: @screen-phone-max) {
+    .responsive-invisibility();
+  }
+  &.visible-xs {
+    @media (max-width: @screen-phone-max) {
+      .responsive-visibility();
+    }
+  }
+  @media (min-width: @screen-tablet) and (max-width: @screen-tablet-max) {
+    .responsive-invisibility();
+  }
+  &.visible-sm {
+    @media (min-width: @screen-tablet) and (max-width: @screen-tablet-max) {
+      .responsive-visibility();
+    }
+  }
+  @media (min-width: @screen-desktop) and (max-width: @screen-desktop-max) {
+    .responsive-invisibility();
+  }
+  &.visible-md {
+    @media (min-width: @screen-desktop) and (max-width: @screen-desktop-max) {
+      .responsive-visibility();
+    }
+  }
+  @media (min-width: @screen-large-desktop) {
+    .responsive-visibility();
+  }
+}
+
+
+
+
+/* CSS Document */
+html {
+	margin: 0;
+	padding: 0;
+}
+body {
+	margin: 0 !important;
+	font-size: 9pt !important;
+	background-color: #FFF;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.pagebreak {
+	page-break-after: always;
+}
+td {
+	padding-left: 5px;
+}
+.required {
+	color: #D40707 !important;
+	font-weight: bold !important;
+}
+.heading, .fieldsetct {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000;
+}
+.fieldsetct {
+	font-family: Arial;
+	font-size: 9pt;
+	color: #000;
+}
+
+.dottedtext {
+	font-family: Arial;
+	color: #000;
+	font-size: 11pt;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.mainreportdiv{
+  padding: 20px;
+}
+
+.membertitle {
+	font-family: Arial;
+	color: #000;
+	font-size: 11pt;
+	font-weight: bold;
+	text-decoration: underline;
+  text-decoration-style: dotted;
+}
+table .adtable {
+	border: 1px solid #000;
+	border-bottom: 0px;
+	border-right: 0px;
+	font-size: 9pt;
+}
+.adtable td {
+	border-bottom: 1px solid #000;
+	border-right: 1px solid #000;
+}
+.adtable thead td {
+ *border:none;
+}
+table .noborder {
+	border: 0px !important
+}
+.noborder td {
+	border: 0px !important
+}
+.adtable thead th.exp-th {
+	border: 1px solid #333;
+	border-left: none;
+}
+.exp-last-th {
+	border-left: 1px solid #333 !important;
+}
+.exp-first-td {
+	border-left: 1px solid #333 !important;
+}
+#page-break {
+	page-break-after: always;
+	page-break-inside: avoid;
+	-webkit-region-break-inside: avoid;
+}
+.report-genheader {
+}
+.report-genheader thead th {
+	font-weight: normal;
+	text-align: left;
+	font-size: 9pt;
+}
+.report-genheader h4 {
+	text-align: center;
+}
+.innnertable {
+}
+.innnertable thead {
+	display: table-header-group;
+}
+.innnertable th {
+	line-height: 0.9em;
+}
+.innnertable .fieldsetct {
+	font-size: 8pt !important;
+}
+.sep-line {
+	width: 100%;
+	height: 20px;
+	border-bottom: 1px #000000 dashed;
+}
+
+@media print {
+.sep-line {
+	width: 100%;
+	height: 0px;
+	border-bottom: none;
+}
+}

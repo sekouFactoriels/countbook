@@ -1,0 +1,90 @@
+<?php
+  $msg = (!empty($msg)) ? unserialize($msg) : $msg;
+?>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-btns">
+          <a href="<?= Yii::$app->request->baseUrl.'/'.md5('parametre_campagnes')?>" style="color: #000;" class="btn btn-circle btn-white" name="motifsenrgclient_form" id="motifsenrgclient_form"> <i class="fa fa-arrow-circle-left">&nbsp;</i></a>
+        </div>
+        <h4 class="panel-title"><i class="glyphicon glyphicon-plus-sign">&nbsp;</i><?= yii::t('app','parametre_campagnes')?></h4>
+      </div>
+      <form action="<?= Yii::$app->request->baseUrl.'/'.md5("parametre_campagnes")?>" class="form-horizontal" id="campagne_form" name="campagne_form" method="post">
+        <div class="panel-body">
+          <?= Yii::$app->nonSqlClass->getHiddenFormTokenField();
+                $token2 = Yii::$app->getSecurity()->generateRandomString();
+                $token2 = str_replace('+','.',base64_encode($token2));
+          ?>
+          <input type="hidden" name="token2" value="<?= $token2 ?>"/>
+          <input type="hidden" name="_csrf" value="<?=yii::$app->request->getcsrftoken()?>">
+          <input type="hidden" name="action_key" id="action_key" value="">
+          <input type="hidden" name="action_on_this" id="action_on_this" value="">
+          <!-- DEBUT CONTENEUR DE MESSAGE  -->
+          <?php $msg = (!empty($msg['type']))?$msg:null;?>
+          <div class="<?= $msg['type'] ?>">
+            <strong><?= $msg['strong']?></strong> <?= $msg['text']?>
+          </div>
+          <!-- FIN CONTENEUR DE MESSAGE -->
+          <div class="form-group">
+            <label class="col-sm-4 control-label"><?= Yii::t('app','denomination')?> : <span class="asterisk">*</span>
+            </label>
+            <div class="col-sm-4 input-group">
+              <input class="form-control" autocomplete="off" name="denomination" id="denomination" value="<?= isset($_POST['denomination']) ? $_POST['denomination'] : ''?>"/>
+              <span class="input-group-addon hidden-md hidden-lg"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-4 control-label"><?= Yii::t('app','msg')?> : <span class="asterisk">*</span>
+            </label>
+            <div class="col-sm-4 input-group">
+              <textarea class="form-control" autocomplete="off" name="msg" id="msg"/> <?= isset($_POST['msg']) ? $_POST['msg'] : ''?> </textarea>
+              <span class="input-group-addon hidden-md hidden-lg"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-4 control-label"><?= Yii::t('app','statut')?> : <span class="asterisk">*</span>
+            </label>
+            <div class="col-sm-4 input-group">
+              <select class="form-control" name="statut" id="statut">
+                <option value="0"><?= Yii::t('app','slectOne')?></option>
+                <option value="1"><?= Yii::t('app','lance')?></option>
+                <option value="2"><?= Yii::t('app','nonlance')?></option>
+              </select>
+              <span class="input-group-addon hidden-md hidden-lg"></span>
+            </div>
+          </div>
+        </div>
+        <!-- DEBUT : FOOTER -->
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-sm-9 col-sm-offset-3">
+              <a class="btn btn-circle btn-success" onclick="$('#beforesave_newcampagne').modal('show');"><i class="glyphicon glyphicon-save"></i>&nbsp;<?= yii::t('app','enrgtrer')?></a>
+              <span>&nbsp;</span>
+              <a href="<?= Yii::$app->request->baseUrl.'/'.md5('parametre_campagnes')?>" type="reset" class="btn btn-circle btn-warning"><i class="glyphicon glyphicon-remove-circle"></i>&nbsp;<?= yii::t('app','annul')?></a>
+            </div>
+          </div>
+        </div>
+        <!-- FIN : FOOTER -->
+      </form>
+    </div>
+
+    <div class="modal fade" id="beforesave_newcampagne" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="newProdCat"><?= Yii::t('app','enrg').'&nbsp;'.Yii::t('app','parametre_campagnes')?></h4>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <p><?= Yii::t('app','msg_continueroperation')?></p>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="javascript:;" type="button" onClick="document.getElementById('action_key').value='<?= md5("campagnes_savecampagne") ?>'; document.getElementById('campagne_form').submit();" class="btn btn-circle btn-success"><i class="glyphicon glyphicon-saved"></i>&nbsp;<?= Yii::t('app','oui')?></a>
+                    <button type="button" href="<?= Yii::$app->request->baseUrl.'/'.md5('parametre_campagnes')?>" class="btn btn-circle btn-warning" data-dismiss="modal"><i class="glyphicon glyphicon-remove-circle"></i>&nbsp;<?= Yii::t('app','non')?></button>
+                </div>
+            </div>
+        </div>
+    </div>
